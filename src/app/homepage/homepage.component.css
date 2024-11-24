@@ -14,6 +14,10 @@
   margin-top: 110px;
 }
 
+.not-logged {
+  margin-top: 110px;
+}
+
 .add-player-btn:hover {
   background-color: #fdd835;
   color: #003366;

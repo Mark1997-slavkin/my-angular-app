@@ -37,11 +37,13 @@ ul {
   list-style: none;
 }
 .player-container:hover {
-  background-color: red;
+  background-color: lightblue;
   color: blue;
 }
 .erase-button {
+  display: flex;
   margin-top: auto;
+  justify-content: space-around;
 
   text-align: center;
 }
@@ -61,6 +63,10 @@ ul {
 .erase-button button:hover {
   background-color: #003366;
   transform: scale(1.05);
+}
+span {
+  font-size: 2rem;
+  cursor: pointer;
 }
 
 /* .container-img {

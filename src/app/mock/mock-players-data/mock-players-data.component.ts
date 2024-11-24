@@ -2,6 +2,7 @@ import { players } from './../mock.data';
 import { Component, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
 import { Player } from '../../model/player.model';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-mock-players-data',
@@ -11,10 +12,14 @@ import { Player } from '../../model/player.model';
   styleUrl: './mock-players-data.component.css',
 })
 export class MockPlayersDataComponent implements OnChanges {
+  isLoggedIn = false;
   playerMock = players;
   @Input() addedPlayer?: Player;
-  constructor() {
+  constructor(private authService: AuthService) {
     localStorage.setItem('players', JSON.stringify(this.playerMock));
+    this.authService.isLoggedIn$.subscribe((loggedIn) => {
+      this.isLoggedIn = loggedIn;
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -37,5 +42,14 @@ export class MockPlayersDataComponent implements OnChanges {
     );
     this.playerMock = deletedPlayerArray;
     localStorage.setItem('players', JSON.stringify(deletedPlayerArray));
+  }
+  likedPlayers: { [key: number]: boolean } = {};
+
+  onLike(shirtNumber: number): void {
+    this.likedPlayers[shirtNumber] = !this.likedPlayers[shirtNumber];
+  }
+
+  isLiked(shirtNumber: number): boolean {
+    return this.likedPlayers[shirtNumber] || false;
   }
 }

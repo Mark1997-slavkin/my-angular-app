@@ -1,4 +1,7 @@
-<button class="add-player-btn" (click)="onToggle()">Add Player</button>
+<button *ngIf="isLoggedIn" class="add-player-btn" (click)="onToggle()">
+  Add Player
+</button>
+<div *ngIf="!isLoggedIn" class="not-logged"></div>
 
 <div class="overlay" *ngIf="toggle" (click)="onToggle()"></div>
 

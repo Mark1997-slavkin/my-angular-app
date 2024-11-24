@@ -1,3 +1,4 @@
+import { AuthService } from './../../auth/auth.service';
 import { CommonModule, NgIf } from '@angular/common';
 import { Component, Pipe } from '@angular/core';
 import {
@@ -10,6 +11,8 @@ import {
 } from '@angular/forms';
 import { pipe } from 'rxjs';
 import { createPasswordStrengthValidator } from '../../validators/password-strength.validator';
+import { users } from '../../mock/mock.user.data';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-signup',
@@ -19,10 +22,19 @@ import { createPasswordStrengthValidator } from '../../validators/password-stren
   styleUrl: './login-signup.component.css',
 })
 export class LoginSignupComponent {
+  savedUsers = users;
+  userNotFound = false;
   form!: FormGroup;
   login = true;
+  loggedIn: {
+    email: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+  } = { email: '', password: '', firstName: '', lastName: '' };
+  signedUp: string | {} = '';
 
-  constructor() {
+  constructor(private router: Router, private authService: AuthService) {
     this.buildForm();
   }
 
@@ -75,7 +87,6 @@ export class LoginSignupComponent {
         'zipcode',
         new FormControl('', {
           validators: [Validators.required],
-          updateOn: 'blur',
         })
       );
     }
@@ -86,10 +97,35 @@ export class LoginSignupComponent {
     this.login = !this.login;
     this.buildForm();
   }
-  onSubmit(form: FormGroup) {
-    console.log(form.value);
-    form.reset();
+  onLogin(form: FormGroup) {
+    console.log(form.value, 'Logged in');
 
-    this.formInfo = form.value;
+    const foundUser = this.savedUsers.find(
+      (user) => user.email === form.value.email
+    );
+
+    if (foundUser) {
+      console.log('user was found');
+
+      this.loggedIn = foundUser;
+      setTimeout(() => {
+        this.router.navigate(['']);
+        this.authService.login();
+      }, 1000);
+    } else {
+      console.log('User not found');
+      this.userNotFound = !this.userNotFound;
+      this.loggedIn = { email: '', password: '', firstName: '', lastName: '' };
+      setTimeout(() => {
+        this.userNotFound = !this.userNotFound;
+      }, 3000);
+    }
+  }
+
+  onSignup(form: FormGroup) {
+    this.signedUp = form.value;
+    console.log('SignedUp', this.signedUp);
+    form.reset();
+    this.login = !this.login;
   }
 }

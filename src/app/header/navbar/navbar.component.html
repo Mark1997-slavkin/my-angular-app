@@ -9,7 +9,11 @@
     <ul>
       <li><a routerLink="/">Home</a></li>
       <li><a routerLink="/info">Info</a></li>
-      <li><a routerLink="/login-signup">Login</a></li>
+      <li *ngIf="isLoggedin"><a routerLink="/favorites">Favorites</a></li>
+      <li *ngIf="!isLoggedin"><a routerLink="/login-signup">Login</a></li>
+      <li class="signout" *ngIf="isLoggedin">
+        <a (click)="onSignout()">Signout</a>
+      </li>
     </ul>
   </div>
 </div>

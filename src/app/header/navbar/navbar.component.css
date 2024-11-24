@@ -1,16 +1,16 @@
 .header-container {
-  position: fixed; /* Fix the navbar */
-  top: 0; /* Position it at the top of the page */
-  left: 0; /* Start at the left edge */
-  width: 100%; /* Full viewport width */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #333; /* Dark background color */
-  color: #ffffff; /* White text */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds shadow for depth */
-  z-index: 1000; /* Ensure navbar stays above other elements */
+  background-color: #333;
+  color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
 }
 
 .logo-container img {
@@ -27,7 +27,11 @@
   margin: 0;
   font-size: 1.8rem;
   font-weight: bold;
-  color: #fdd835; /* FC Barcelona Yellow */
+  color: #fdd835;
+}
+
+.signout {
+  background-color: red;
 }
 
 .nav-container ul {
@@ -67,7 +71,6 @@ li a:active {
   color: #fdd835;
 }
 
-/* Add margin-top to the body or main content to prevent overlap */
 body {
-  margin-top: 80px; /* Adjust based on the height of the navbar */
+  margin-top: 80px;
 }

@@ -19,7 +19,15 @@
       </ul>
     </div>
     <div class="erase-button">
-      <button (click)="onErase(player.shirtNumber)">Erase Player</button>
+      <button *ngIf="isLoggedIn" (click)="onErase(player.shirtNumber)">
+        Erase Player
+      </button>
+      <span
+        (click)="onLike(player.shirtNumber)"
+        [ngStyle]="{ color: isLiked(player.shirtNumber) ? 'red' : 'gray' }"
+        *ngIf="isLoggedIn"
+        >&#10084;</span
+      >
     </div>
   </div>
 </div>

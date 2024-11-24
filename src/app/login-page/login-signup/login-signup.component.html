@@ -54,8 +54,9 @@
             form.get('password')?.touched &&
             form.get('password')?.dirty &&
             form.get('password')?.value.length > 0 &&
-            form.get('password')?.value.length < 15
+            form.get('password')?.value.length < 6
           "
+          class="errors"
         >
           Password is must be at least 6 characters long and yours have
           {{ form.get("password")?.value.length }}
@@ -109,10 +110,11 @@
           'background-color': !form.valid ? 'gray' : 'blue',
           cursor: !form.valid ? 'not-allowed' : 'pointer'
         }"
-        (click)="onSubmit(form)"
+        (click)="!login ? onSignup(form) : onLogin(form)"
       >
         {{ login ? "Login" : "Signup" }}
       </button>
+      <p class="errors" *ngIf="userNotFound">User or Password are Incorrect</p>
       <p class="signup-text">
         {{ login ? "Don't have an account?" : "Already have an account?" }}
         <a (click)="onChange()">{{ login ? "Signup here" : "Login here" }}</a>
