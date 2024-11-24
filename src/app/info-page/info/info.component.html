@@ -1,0 +1,131 @@
+<main class="content-container">
+  <div class="submitted-form" *ngIf="infoSubmit">
+    <p>Contacts were submitted, will be in touch, meanwhile Visca Barca!</p>
+  </div>
+
+  <section id="about" class="info-section">
+    <h2>About Us</h2>
+    <p>
+      Welcome to the ultimate FC Barcelona fan page! We're a community of
+      passionate fans dedicated to celebrating and supporting the greatest
+      football club in the world. Here you’ll find everything you need to stay
+      updated, share your passion, and connect with other Barca supporters!
+    </p>
+  </section>
+
+  <section id="history" class="info-section">
+    <h2>Team History</h2>
+    <p>
+      FC Barcelona was founded in 1899 by a group of Swiss, Spanish, English,
+      and Catalan footballers led by Joan Gamper. With a legacy of success,
+      Barcelona has become synonymous with world-class football, exceptional
+      talent, and a proud culture. From Johan Cruyff's total football to Lionel
+      Messi's magic, Barca has always been more than a club.
+    </p>
+  </section>
+
+  <section id="fan-activities" class="info-section">
+    <h2>Fan Activities</h2>
+    <p>
+      Join our regular fan meetups, match screenings, and charity events! We
+      organize activities for all Barcelona supporters to get together and show
+      their love for the Blaugrana. Stay tuned for updates on our next events!
+    </p>
+  </section>
+
+  <section id="contact" class="info-section">
+    <h2>Contact Us</h2>
+    <form
+      action="#"
+      #infoForm="ngForm"
+      class="contact-form"
+      (ngSubmit)="onSubmit(infoForm, $event)"
+    >
+      <label for="name">Name:</label>
+      <input
+        type="text"
+        ngModel
+        id="name"
+        #name="ngModel"
+        name="name"
+        minlength="2"
+        maxlength="20"
+        placeholder="Enter your name here"
+        required
+      />
+      <p class="error" *ngIf="!name.value && name.touched">
+        Name is mandatory for filling in the form
+      </p>
+      <p
+        class="error"
+        *ngIf="name.value?.length > 0 && name.value?.length < 2 && name.touched"
+      >
+        Name length must be above two characters
+      </p>
+
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        ngModel
+        [ngModelOptions]="{ updateOn: 'blur' }"
+        id="email"
+        #email="ngModel"
+        name="email"
+        required
+        (ngModelChange)="onEmailChange($event)"
+        placeholder="Enter your Email address here"
+        email
+      />
+      <p class="error" *ngIf="!email.value && email.touched">
+        Email is mandatory for filling in the form
+      </p>
+      <p
+        class="error"
+        *ngIf="email.errors?.['email'] && email.value?.length>0 && email.touched"
+      >
+        This is not a valid email
+      </p>
+
+      <label for="message">Message:</label>
+      <textarea
+        id="message"
+        ngModel
+        #textarea="ngModel"
+        name="message"
+        rows="5"
+        minlength="15"
+        maxlength="300"
+        placeholder="Enter your Message here"
+        required
+      ></textarea>
+      <p class="error" *ngIf="!textarea.value && textarea.touched">
+        A message is mandatory for filling in the form
+      </p>
+      <p
+        class="error"
+        *ngIf="
+          textarea.value?.length > 0 &&
+          textarea.value?.length < 15 &&
+          textarea.touched
+        "
+      >
+        The message must contain at least 15 characters
+      </p>
+
+      <button
+        type="submit"
+        [disabled]="!infoForm.valid"
+        [ngStyle]="{
+          'background-color': !infoForm.valid ? 'gray' : 'blue',
+          cursor: !infoForm.valid ? 'not-allowed' : 'pointer'
+        }"
+      >
+        Send Message
+      </button>
+    </form>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>© 2024 FC Barcelona Fan Page. All Rights Reserved.</p>
+</footer>

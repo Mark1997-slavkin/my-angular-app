@@ -1,0 +1,25 @@
+<div class="container">
+  <p class="not-available" *ngIf="playerMock.length === 0">
+    No players available
+  </p>
+
+  <div
+    class="player-container"
+    *ngFor="let player of playerMock"
+    [attr.key]="player.shirtNumber"
+  >
+    <div class="title-container">
+      <h3>{{ player.name }}</h3>
+    </div>
+    <div class="info-container">
+      <ul>
+        <li>Country: {{ player.country }}</li>
+        <li>Shirt Number: {{ player.shirtNumber }}</li>
+        <li>Position: {{ player.position }}</li>
+      </ul>
+    </div>
+    <div class="erase-button">
+      <button (click)="onErase(player.shirtNumber)">Erase Player</button>
+    </div>
+  </div>
+</div>

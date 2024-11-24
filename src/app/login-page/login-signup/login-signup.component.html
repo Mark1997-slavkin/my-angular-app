@@ -1,0 +1,91 @@
+<div class="login-container">
+  <div class="login-box">
+    <h2>{{ login ? "Login" : "Signup" }}</h2>
+    <form action="#" method="post" #loginSignup="ngForm">
+      <div class="input-group">
+        <label for="username">Username:</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          ngModel
+          #userName="ngModel"
+          required
+        />
+      </div>
+      <div class="input-group">
+        <label for="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          passwordStrength
+          ngModel
+          #password="ngModel"
+          required
+        />
+        <p class="errors" *ngIf="!password.value && password.touched">
+          The password is mandatory
+        </p>
+        <!--  <p class="errors" *ngIf="password.errors?.['passwordStrength']">
+          Your password must have lower case, upper case and numeric characters.
+        </p> -->
+      </div>
+      <div *ngIf="!login" class="input-group">
+        <label for="firstName">First Name:</label>
+        <input
+          type="text"
+          id="firstName"
+          name="firstName"
+          #firstName="ngModel"
+          ngModel
+          required
+        />
+      </div>
+      <div *ngIf="!login" class="input-group">
+        <label for="lastName">Last Name:</label>
+        <input
+          type="lastName"
+          id="lastName"
+          name="lastName"
+          #lastName="ngModel"
+          ngModel
+          required
+        />
+      </div>
+      <div *ngIf="!login" class="input-group">
+        <label for="address">Address:</label>
+        <input
+          type="address"
+          id="address"
+          name="address"
+          #address="ngModel"
+          ngModel
+          required
+        />
+      </div>
+      <div *ngIf="!login" class="input-group">
+        <label for="zipcode">Zipcode:</label>
+        <input
+          type="zipcode"
+          id="zipcode"
+          name="zipcode"
+          #zipCode="ngModel"
+          ngModel
+          required
+        />
+      </div>
+      <button
+        type="submit"
+        class="login-button"
+        (click)="onSubmit(loginSignup)"
+      >
+        {{ login ? "Login" : "Signup" }}
+      </button>
+      <p class="signup-text">
+        {{ login ? "Don't have an account?" : "Already have an account?" }}
+        <a (click)="onChange()">{{ login ? "Signup here" : "Login here" }}</a>
+      </p>
+    </form>
+  </div>
+</div>

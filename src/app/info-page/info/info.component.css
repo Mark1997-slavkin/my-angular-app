@@ -1,0 +1,177 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  background-color: #f4f4f9;
+  color: #333;
+  line-height: 1.6;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.content-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 150px auto;
+  padding: 20px;
+}
+
+h2 {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: #003087;
+}
+
+.info-section {
+  background-color: #ffffff;
+  padding: 20px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.info-section:hover {
+  transform: scale(1.02);
+}
+
+p {
+  font-size: 1.1em;
+  color: #555;
+}
+
+#fan-activities {
+  background-color: #ffe6e6;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-form label {
+  font-weight: bold;
+  color: #333;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 10px;
+  font-size: 1em;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.contact-form button {
+  padding: 10px;
+  font-size: 1em;
+  background-color: #003087;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+  background-color: #a50044;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #003087;
+  color: #ffffff;
+  margin-top: 30px;
+}
+
+.footer p {
+  font-size: 0.9em;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px red solid;
+}
+textarea.ng-invalid.ng-touched {
+  border: 1px red solid;
+}
+
+.error {
+  font-size: 0.8rem;
+  color: red;
+  margin-top: -10px;
+  margin-left: 5px;
+}
+@media (max-width: 768px) {
+  .content-container {
+    width: 95%;
+    padding: 10px;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  p {
+    font-size: 1em;
+  }
+}
+
+/* Section Specific Styling */
+#about {
+  border-left: 5px solid #003087;
+}
+
+#history {
+  border-left: 5px solid #a50044;
+}
+
+#contact {
+  border-left: 5px solid #ffb400;
+}
+
+a {
+  color: #a50044;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #ffb400;
+}
+
+.submitted-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  max-width: 400px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  color: #ffffff;
+  z-index: 1000;
+}
+
+.submitted-form p {
+  color: #ffb400;
+  font-size: 1.5em;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}

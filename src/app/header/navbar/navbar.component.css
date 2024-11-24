@@ -1,0 +1,73 @@
+.header-container {
+  position: fixed; /* Fix the navbar */
+  top: 0; /* Position it at the top of the page */
+  left: 0; /* Start at the left edge */
+  width: 100%; /* Full viewport width */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #333; /* Dark background color */
+  color: #ffffff; /* White text */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds shadow for depth */
+  z-index: 1000; /* Ensure navbar stays above other elements */
+}
+
+.logo-container img {
+  width: 70px;
+  border-radius: 50%;
+}
+
+.title-container {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.title-container h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #fdd835; /* FC Barcelona Yellow */
+}
+
+.nav-container ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+}
+
+li {
+  margin: 0 15px;
+  height: 100%;
+  cursor: pointer;
+}
+
+li a {
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #ffffff;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 4px;
+}
+
+li:hover {
+  background-color: #444;
+}
+
+li a:hover {
+  color: #fdd835;
+}
+
+li a:focus,
+li a:active {
+  background-color: #555;
+  color: #fdd835;
+}
+
+/* Add margin-top to the body or main content to prevent overlap */
+body {
+  margin-top: 80px; /* Adjust based on the height of the navbar */
+}

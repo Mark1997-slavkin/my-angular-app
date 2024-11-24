@@ -1,0 +1,9 @@
+<button class="add-player-btn" (click)="onToggle()">Add Player</button>
+
+<div class="overlay" *ngIf="toggle" (click)="onToggle()"></div>
+
+<div *ngIf="toggle === true">
+  <app-add-player (playerData)="onGettingData($event)"></app-add-player>
+</div>
+
+<app-mock-players-data [addedPlayer]="addPlayerData"></app-mock-players-data>
