@@ -1,6 +1,6 @@
 export interface Player {
   name: string;
   country: string;
-  shirtNumber: number;
+  shirtNumber: number | string;
   position: string;
 }
