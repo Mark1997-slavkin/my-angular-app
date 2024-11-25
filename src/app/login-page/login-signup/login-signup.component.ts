@@ -5,12 +5,9 @@ import {
   FormControl,
   FormGroup,
   FormsModule,
-  NgForm,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { pipe } from 'rxjs';
-import { createPasswordStrengthValidator } from '../../validators/password-strength.validator';
 import { users } from '../../mock/mock.user.data';
 import { Router } from '@angular/router';
 
@@ -32,7 +29,21 @@ export class LoginSignupComponent {
     firstName: string;
     lastName: string;
   } = { email: '', password: '', firstName: '', lastName: '' };
-  signedUp: string | {} = '';
+  signedUp: {
+    email: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+    address: string;
+    zipCode: string;
+  } = {
+    email: '',
+    password: '',
+    firstName: '',
+    lastName: '',
+    address: '',
+    zipCode: '',
+  };
 
   constructor(private router: Router, private authService: AuthService) {
     this.buildForm();
@@ -95,6 +106,7 @@ export class LoginSignupComponent {
   formInfo: string | { [key: string]: any } = '';
   onChange() {
     this.login = !this.login;
+    this.form.reset();
     this.buildForm();
   }
   onLogin(form: FormGroup) {
@@ -110,8 +122,9 @@ export class LoginSignupComponent {
       this.loggedIn = foundUser;
       setTimeout(() => {
         this.router.navigate(['']);
-        this.authService.login();
+        this.authService.login(foundUser);
       }, 1000);
+      localStorage.setItem('user', JSON.stringify(this.loggedIn));
     } else {
       console.log('User not found');
       this.userNotFound = !this.userNotFound;
@@ -124,8 +137,12 @@ export class LoginSignupComponent {
 
   onSignup(form: FormGroup) {
     this.signedUp = form.value;
-    console.log('SignedUp', this.signedUp);
+    this.savedUsers.push(this.signedUp);
+    console.log('SignedUp', this.savedUsers);
     form.reset();
     this.login = !this.login;
+    setTimeout(() => {
+      this.buildForm();
+    });
   }
 }
