@@ -47,6 +47,7 @@ export class MockPlayersDataComponent implements OnChanges {
 
   onLike(shirtNumber: number): void {
     this.likedPlayers[shirtNumber] = !this.likedPlayers[shirtNumber];
+    localStorage.setItem('likedCards', JSON.stringify(this.likedPlayers));
   }
 
   isLiked(shirtNumber: number): boolean {
