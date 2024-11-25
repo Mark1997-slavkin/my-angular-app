@@ -12,13 +12,13 @@ export class AddPlayerComponent {
   @Output() playerData = new EventEmitter<{
     name: string;
     country: string;
-    shirtNumber: number;
+    shirtNumber: number | string;
     position: string;
   }>();
 
   name = '';
   country = '';
-  shirtNumber = 0;
+  shirtNumber = '';
   position = '';
 
   onAddPlayer() {
