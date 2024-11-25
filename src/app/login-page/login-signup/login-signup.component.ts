@@ -108,6 +108,7 @@ export class LoginSignupComponent {
     this.login = !this.login;
     this.form.reset();
     this.buildForm();
+    this.authService.signup(!this.login);
   }
   onLogin(form: FormGroup) {
     console.log(form.value, 'Logged in');
@@ -140,6 +141,7 @@ export class LoginSignupComponent {
     this.savedUsers.push(this.signedUp);
     console.log('SignedUp', this.savedUsers);
     form.reset();
+    this.authService.signup(false);
     this.login = !this.login;
     setTimeout(() => {
       this.buildForm();

@@ -7,6 +7,7 @@
     class="player-container"
     *ngFor="let player of playerMock"
     [attr.key]="player.shirtNumber"
+    (click)="onNavigate(player.shirtNumber)"
   >
     <div class="title-container">
       <h3>{{ player.name }}</h3>

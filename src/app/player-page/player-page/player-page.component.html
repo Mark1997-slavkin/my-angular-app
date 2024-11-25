@@ -1,0 +1,12 @@
+<div class="player-detail-container">
+  <div class="player-card">
+    <img [src]="player.img" alt="{{ player.name }}" class="player-image" />
+    <div class="player-info">
+      <h2>{{ player.name }}</h2>
+      <p><strong>Shirt Number:</strong> {{ player.shirtNumber }}</p>
+      <p><strong>Position:</strong> {{ player.position }}</p>
+      <p><strong>Country:</strong> {{ player.country }}</p>
+    </div>
+  </div>
+  <button class="back-button" (click)="onBack()">Back to Players List</button>
+</div>

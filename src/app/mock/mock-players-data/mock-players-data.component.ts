@@ -3,6 +3,7 @@ import { Component, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
 import { Player } from '../../model/player.model';
 import { AuthService } from '../../auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mock-players-data',
@@ -15,7 +16,7 @@ export class MockPlayersDataComponent implements OnChanges {
   isLoggedIn = false;
   playerMock = players;
   @Input() addedPlayer?: Player;
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
     localStorage.setItem('players', JSON.stringify(this.playerMock));
     this.authService.isLoggedIn$.subscribe((loggedIn) => {
       this.isLoggedIn = loggedIn;
@@ -32,8 +33,12 @@ export class MockPlayersDataComponent implements OnChanges {
         newPlayer.shirtNumber > 0
       ) {
         this.playerMock.push(newPlayer);
+        localStorage.setItem('players', JSON.stringify(this.playerMock));
       }
     }
+  }
+  onNavigate(shirtNubmer: number) {
+    this.router.navigate(['/player', shirtNubmer]);
   }
 
   onErase(shirtNubmer: number) {

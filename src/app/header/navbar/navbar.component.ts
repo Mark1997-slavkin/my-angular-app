@@ -12,10 +12,14 @@ import { CommonModule } from '@angular/common';
 })
 export class NavbarComponent {
   isLoggedin = false;
+  isSignup = false;
 
   constructor(private authService: AuthService, private router: Router) {
     this.authService.isLoggedIn$.subscribe((loggedIn) => {
       this.isLoggedin = loggedIn;
+    });
+    this.authService.signedup$.subscribe((subscribe) => {
+      this.isSignup = subscribe;
     });
   }
 
