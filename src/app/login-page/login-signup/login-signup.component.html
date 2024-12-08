@@ -71,6 +71,25 @@
           placeholder="First-Name"
           formControlName="firstName"
         />
+        <p
+          class="errors"
+          *ngIf="
+            form.get('firstName')?.touched &&
+            form.get('firstName')?.hasError('required')
+          "
+        >
+          You first name is mandatory
+        </p>
+        <p
+          class="errors"
+          *ngIf="
+            form.get('firstName')?.dirty &&
+            form.get('firstName')?.value.length < 2 &&
+            form.get('firstName')?.value.length > 0
+          "
+        >
+          First name must be at least 2 characters long
+        </p>
       </div>
       <div *ngIf="!login" class="input-group">
         <label for="lastName">Last Name:</label>
@@ -81,7 +100,29 @@
           placeholder="Last-Name"
           formControlName="lastName"
         />
+
+        <p
+          class="errors"
+          *ngIf="
+            form.get('lastName')?.hasError('required') &&
+            form.get('lastName')?.touched
+          "
+        >
+          Last name is mandatory
+        </p>
+        <p
+          class="errors"
+          *ngIf="
+            form.get('lastName')?.touched &&
+            form.get('lastName')?.dirty &&
+            form.get('lastName')?.value.length > 0 &&
+            form.get('lastName')?.value.length < 2
+          "
+        >
+          Last name must be at least 2 charachters long
+        </p>
       </div>
+
       <div *ngIf="!login" class="input-group">
         <label for="address">Address:</label>
         <input
@@ -114,6 +155,7 @@
       >
         {{ login ? "Login" : "Signup" }}
       </button>
+      <p>{{ form.value | json }}</p>
       <p class="errors" *ngIf="userNotFound">User or Password are Incorrect</p>
       <p class="signup-text">
         {{ login ? "Don't have an account?" : "Already have an account?" }}

@@ -53,7 +53,7 @@ export class LoginSignupComponent {
     this.form = new FormGroup({
       email: new FormControl('', {
         validators: [Validators.required, Validators.email],
-        updateOn: 'blur',
+        /* updateOn: 'blur', */
       }),
       password: new FormControl('', {
         validators: [
@@ -73,7 +73,7 @@ export class LoginSignupComponent {
             Validators.minLength(2),
             Validators.maxLength(10),
           ],
-          updateOn: 'blur',
+          /* updateOn: 'blur', */
         })
       );
       this.form.addControl(
@@ -84,14 +84,14 @@ export class LoginSignupComponent {
             Validators.minLength(2),
             Validators.maxLength(10),
           ],
-          updateOn: 'blur',
+          /* updateOn: 'blur', */
         })
       );
       this.form.addControl(
         'address',
         new FormControl('', {
           validators: [Validators.required],
-          updateOn: 'blur',
+          /* updateOn: 'blur', */
         })
       );
       this.form.addControl(
@@ -112,7 +112,6 @@ export class LoginSignupComponent {
   }
   onLogin(form: FormGroup) {
     console.log(form.value, 'Logged in');
-
     const foundUser = this.savedUsers.find(
       (user) => user.email === form.value.email
     );

@@ -1,1 +1,76 @@
-<p>favorites-page works!</p>
+<h1>Styled Forms</h1>
+
+<section class="form-container">
+  <form class="form form-1">
+    <h2>Contact Us</h2>
+    <label for="name">Name</label>
+    <input type="text" id="name" placeholder="Enter your name" />
+
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="Enter your email" />
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <form class="form form-2">
+    <h2>Sign Up</h2>
+    <label for="username">Username</label>
+    <input type="text" id="username" placeholder="Create a username" />
+
+    <label for="password">Password</label>
+    <input type="password" id="password" placeholder="Create a password" />
+
+    <button type="submit">Register</button>
+  </form>
+
+  <form class="form form-3" [formGroup]="form">
+    <input
+      type="text"
+      placeholder="Course title"
+      formControlName="title"
+      maxlength="60"
+      [ngClass]="{
+        'border-red':
+          form.get('title')?.touched && form.get('title')?.errors?.required,
+        'placeholder-red':
+          form.get('title')?.touched && form.get('title')?.errors?.required
+      }"
+      #title
+    />
+    <p *ngIf="title.value.length >= 0 && title.value.length < 60">
+      {{ title.value.length }} / 60
+    </p>
+    <p class="valid" *ngIf="title.value.length === 60">
+      You have made the limit of 60 characters
+    </p>
+
+    <input
+      type="date"
+      formControlName="date"
+      #date
+      [ngClass]="{
+        'border-red':
+          form.get('date')?.touched && form.get('date')?.errors?.required
+      }"
+    />
+    <label class="checkbox-container">
+      <input type="checkbox" formControlName="checked" />
+      <span class="custom-checkbox"></span>
+      Allow downloads?
+    </label>
+
+    <textarea
+      name="textarea"
+      placeholder="Description"
+      formControlName="description"
+    ></textarea>
+    <label for="">Choose an option</label>
+    <select formControlName="selector">
+      <option value="Begginer">Begginer</option>
+      <option value="Intermidiate">Intermidiate</option>
+      <option value="Advanced">Advanced</option>
+    </select>
+    <div>{{ form.value | json }}</div>
+    <button type="submit" (click)="onSubmit()">Send Feedback</button>
+  </form>
+</section>
